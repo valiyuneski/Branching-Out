@@ -1,14 +1,28 @@
 import json
+import json
+import logging
 
-def filter_users_by_name(name):
-    """Filter users by name from a JSON file and print the results."""
-    with open("users.json", "r") as file:
-        users = json.load(file)
-    
-    filtered_users = [user for user in users if user["name"].lower() == name.lower()]
-    
-    for user in filtered_users:
-        print(user)
+def filter_users_by_name(name: str) -> list[dict]:
+    """Filter users by name from a JSON file and return the results."""
+    try:
+        with open("users.json", "r", encoding="utf-8") as file:
+            users = json.load(file)
+    except FileNotFoundError:
+        logging.error("users.json file not found.")
+        return []
+    except json.JSONDecodeError:
+        logging.error("users.json is not a valid JSON file.")
+        return []
+
+    filtered_users = [user for user in users if user.get("name", "").lower() == name.lower()]
+
+    if filtered_users:
+        for user in filtered_users:
+            print(user)
+    else:
+        print(f"No users found with name '{name}'")
+
+    return filtered_users
 
 def filter_by_age(age_to_filter):
     """Filter users by age from a JSON file and print the results."""
