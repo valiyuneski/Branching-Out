@@ -1,5 +1,4 @@
 import json
-import json
 import logging
 
 def filter_users_by_name(name: str) -> list[dict]:
@@ -88,7 +87,7 @@ if __name__ == "__main__":
     elif filter_option == "age":
         age_to_search = int(input("Enter age to filter users: ").strip())
         print_to_console(filter_by_age(age_to_search))
-    elif filter_option == "age":
+    elif filter_option == "email":
         email_to_search = input("Enter email to filter users: ").strip()
         print_to_console(filter_by_email(email_to_search))
     else:
