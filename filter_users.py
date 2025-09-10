@@ -39,12 +39,6 @@ def filter_by_age(age_to_filter: int) -> list[dict]:
     # Filter by age
     filtered_users = [user for user in all_users if user.get("age") == age_to_filter]
 
-    if filtered_users:
-        for user in filtered_users:
-            print(user)
-    else:
-        print(f"No users found with age {age_to_filter}")
-
     return filtered_users
 
 
